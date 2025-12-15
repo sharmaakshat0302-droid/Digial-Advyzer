@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Marketing & AI Automation Agency</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --text: #1a1a1a;
+      --muted: #666;
+      --accent: #ff7a18;
+      --card: #ffffff;
+      --border: #e6e6e6;
+    }
+
+    * { box-sizing: border-box; cursor: none; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor.active {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 122, 24, 0.15);
+      border: 1px solid var(--accent);
+    }
+
+    header {
+      padding: 80px 8%;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 3.4rem;
+      margin-bottom: 20px;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .cta {
+      display: inline-flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 40px;
+      border: none;
+      background: var(--text);
+      color: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .hero-visual {
+      background: radial-gradient(circle at top, #ffe2c8, transparent 60%);
+      border-radius: 32px;
+      height: 360px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-card {
+      position: absolute;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px 22px;
+      font-size: 0.9rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-card.one { top: 40px; left: 40px; }
+    .floating-card.two { bottom: 60px; right: 40px; animation-delay: 2s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    .section-title {
+      max-width: 680px;
+      margin-bottom: 60px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: auto -40% -60% -40%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255,122,24,0.15), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover::after { opacity: 1; }
+
+    .card h3 { margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 20px;
+    }
+
+    .step {
+      background: linear-gradient(180deg, #fff, #fafafa);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+
+    .step span {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 28px;
+    }
+
+    .review {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid var(--border);
+    }
+
+    .review strong { display: block; margin-top: 16px; }
+
+    footer {
+      padding: 80px 8% 60px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p { color: var(--muted); }
+
+    /* Hover cursor triggers */
+    a, button, .card { cursor: none; }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- HERO -->
+  <header>
+    <div>
+      <h1>Digital Marketing &<br>AI Automation Agency</h1>
+      <p class="tagline">We help Indian businesses grow using performance-driven digital marketing and AI-powered automation systems designed for scalability and ROI.</p>
+      <div class="cta">
+        <a href="https://wa.me/8595690286?text=Hi%20I%20am%20interested%20in%20your%20Digital%20Marketing%20and%20AI%20Automation%20services" target="_blank" class="btn">Start Your Growth</a>
+        <button class="btn secondary">View Services</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card one">AI Chatbots & Automation</div>
+      <div class="floating-card two">Performance Marketing ROI</div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="section-title">
+      <h2>About Us</h2>
+      <p class="tagline">We partner with startups, local businesses, and growing enterprises across India to streamline marketing, automate operations, and drive measurable business growth.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section>
+    <div class="section-title">
+      <h2>Digital Marketing Services</h2>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>Strategy & Consulting</h3><p>Growth planning, funnels, market analysis, and brand positioning.</p></div>
+      <div class="card"><h3>Performance Marketing</h3><p>Google, Meta & LinkedIn ads with ROI-focused optimization.</p></div>
+      <div class="card"><h3>SEO</h3><p>Technical, on-page, local SEO, and ranking improvement.</p></div>
+      <div class="card"><h3>Social Media Marketing</h3><p>Content, engagement, and analytics-driven growth.</p></div>
+      <div class="card"><h3>Content & Creative</h3><p>Ad creatives, copywriting, videos, and landing pages.</p></div>
+      <div class="card"><h3>Website & Funnel Optimization</h3><p>High-converting pages with CRO and analytics.</p></div>
+    </div>
+  </section>
+
+  <!-- AI SERVICES -->
+  <section>
+    <div class="section-title">
+      <h2>AI Automation Services</h2>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>AI Business Automation</h3><p>Workflow, CRM, and process automation.</p></div>
+      <div class="card"><h3>AI Chatbots</h3><p>Website, WhatsApp & social media automation.</p></div>
+      <div class="card"><h3>Marketing Automation</h3><p>Lead nurturing, segmentation, and campaign automation.</p></div>
+      <div class="card"><h3>Sales Automation</h3><p>AI lead scoring, follow-ups, and pipeline automation.</p></div>
+      <div class="card"><h3>Custom AI Solutions</h3><p>API-based, no-code & low-code AI systems.</p></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <div class="section-title">
+      <h2>How We Work</h2>
+    </div>
+    <div class="process">
+      <div class="step"><span>01</span><br>Discovery & Analysis</div>
+      <div class="step"><span>02</span><br>Strategy Design</div>
+      <div class="step"><span>03</span><br>Implementation</div>
+      <div class="step"><span>04</span><br>Optimization</div>
+      <div class="step"><span>05</span><br>Reporting & Scaling</div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section>
+    <div class="section-title">
+      <h2>Client Reviews</h2>
+    </div>
+    <div class="reviews">
+      <div class="review"><p>"Their automation systems reduced our manual work and improved lead response time significantly."</p><strong>– Founder, Indian SaaS Startup</strong></div>
+      <div class="review"><p>"Professional, transparent, and ROI-focused. Perfect partner for digital growth."</p><strong>– Marketing Head, Real Estate Firm</strong></div>
+      <div class="review"><p>"Great understanding of Indian market dynamics and customer behaviour."</p><strong>– Owner, Local Business</strong></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h3>Let’s Automate, Scale & Grow Your Business</h3>
+    <p>Contact us for digital marketing and AI automation solutions tailored for Indian businesses.</p>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('button, .card, h1, h2, h3, p').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+  </script>
+</body>
+</html>
